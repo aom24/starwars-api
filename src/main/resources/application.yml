@@ -2,8 +2,3 @@ spring:
   jpa:
     hibernate:
       ddl-auto: create
-
-server:
-  error:
-    whitelabel:
-      enabled: false
