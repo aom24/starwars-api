@@ -30,6 +30,13 @@ public class PlanetController {
         return new ResponseEntity<List<Planet>>(planets, HttpStatus.OK);
     }
 
+    @RequestMapping(method = RequestMethod.GET, path = "/{id}")
+    public ResponseEntity<Planet> findById(@PathVariable Long id) {
+        Planet planet = findPlanet.execute(id);
+
+        return new ResponseEntity<Planet>(planet, HttpStatus.OK);
+    }
+
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<Planet> savePlanet(@RequestBody Planet planet) {
         Planet saved = savePlanet.execute(planet);
