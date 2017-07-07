@@ -24,19 +24,25 @@ public class SaveFilm {
     }
 
     public Film execute(@NonNull Film film) throws NullPointerException {
+        createPlanetsWhenNotExist(film);
+        createPeopleWhenNotExist(film);
 
-        film.getPlanets().forEach((Planet p) -> {
-            if(!planetRepository.exists(p.getPlanetId())) {
-                planetRepository.save(p);
-            }
-        });
+        return filmRepository.save(film);
+    }
 
+    private void createPeopleWhenNotExist(@NonNull Film film) {
         film.getPeople().forEach((People p) -> {
             if(!peopleRepository.exists(p.getPeopleId())) {
                 peopleRepository.save(p);
             }
         });
+    }
 
-        return filmRepository.save(film);
+    private void createPlanetsWhenNotExist(@NonNull Film film) {
+        film.getPlanets().forEach((Planet p) -> {
+            if(!planetRepository.exists(p.getPlanetId())) {
+                planetRepository.save(p);
+            }
+        });
     }
 }
