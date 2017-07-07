@@ -27,7 +27,9 @@ public class FilmsController {
         List<Film> films = findAllFilms.execute();
         films.forEach((Film f) -> {
             f.getPlanets().forEach((Planet p) -> {
-                p.add(linkTo(methodOn(PlanetController.class).findById(p.getPlanetId())).withSelfRel());
+                if(!p.hasLink("self")) {
+                    p.add(linkTo(methodOn(PlanetController.class).findById(p.getPlanetId())).withSelfRel());
+                }
             });
         });
 
