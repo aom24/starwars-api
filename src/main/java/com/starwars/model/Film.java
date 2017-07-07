@@ -18,6 +18,7 @@ public class Film {
 
     private String title;
     private Integer episodeId;
+    @Column(length = 500)
     private String openingCrawl;
     private String director;
     private String producer;
