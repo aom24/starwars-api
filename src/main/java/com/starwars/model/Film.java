@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.ToString;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
+import org.springframework.hateoas.ResourceSupport;
 
 import javax.persistence.*;
 import java.util.List;
@@ -11,7 +12,7 @@ import java.util.List;
 @Entity
 @Data
 @ToString(exclude = {"people", "planets"})
-public class Film {
+public class Film extends ResourceSupport {
     @Id
     @GeneratedValue
     private Long filmId;
